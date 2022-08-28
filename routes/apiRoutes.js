@@ -27,9 +27,9 @@ api.post('api/notes', (req, res) => {
     data.push(newNote);
 
     // Rewrite db.json
-    fs.writeFile('./db/db.json', JSON.stringify(data), (err) =>
-        err ? console.error(err) : console.info('Your notes have been updated.')
-    );
+    fs.writeFile('./db/db.json', JSON.stringify(data));
+
+    console.info("Notes have been successfully updated.")
 
     res.json(data);
 })
