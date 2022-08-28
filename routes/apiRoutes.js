@@ -1,9 +1,8 @@
 // Declare constants
 const api = require('express').Router();
-const { response } = require('express');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
-const database = require('../db/db.json');
+
 // API GET request
 api.get('/api/notes', (req, res) => {
     console.info(`${req.method} request received for notes`);

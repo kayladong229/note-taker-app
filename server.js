@@ -2,10 +2,10 @@
 const express = require('express');
 const apiRouter = require('./routes/apiRoutes')
 const htmlRouter = require('./routes/htmlRoutes')
-// Declare initial PORT
-const PORT = process.env.PORT || 3001;
 // Create express server
 const app = express();
+// Declare initial PORT
+const PORT = process.env.PORT || 3001;
 
 // Middlewares for POST requests
 app.use(express.json());
