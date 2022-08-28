@@ -22,16 +22,18 @@ api.post('api/notes', (req, res) => {
     // Assign unique ID for every new note
     newNote.id = uuidv4();
 
-    // Read db.json
+    // Read db.json and push new note to db.json
     let data = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
     data.push(newNote);
 
     // Rewrite db.json
-    fs.writeFile('./db/db.json', JSON.stringify(data));
+    fs.writeFileSync('./db/db.json', JSON.stringify(data));
 
     console.info("Notes have been successfully updated.")
 
     res.json(data);
-})
+});
+// // API delete 
+// api.delete('/api/notes/:noteid', (req, res) =>)
 
 module.exports = api
