@@ -8,7 +8,7 @@ module.exports = app => {
 app.get('/api/notes', (req, res) => {
     // Read db.json file and return all saved notes
     let data = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
-    console.log('Current notes: ', data);
+    console.log('\nCurrent notes: ', data);
     res.json(data);
 });
 
@@ -25,14 +25,13 @@ app.post('/api/notes', (req, res) => {
 
     // Retrieve current data from db.json
     let data = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
-    console.log('Current notes: ', data);
 
     // Push new note to json file
     data.push(newNote);
 
     // Rewrite db.json with new note
     fs.writeFileSync('./db/db.json', JSON.stringify(data));
-    console.log(`Your new note has been successfully added under the ID ${newNote.id}.`);
+    console.log(`\nYour new note has been successfully added under the ID ${newNote.id}.`);
     res.json(data);
 });
 // // API delete request
@@ -41,12 +40,11 @@ app.delete('/api/notes/:id', (req, res) => {
     let noteId = req.params.id;
     // Read db.json data
     let data = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
-    console.log('Current notes: ', data);
     // Remove the note with the specified ID
     const newData = data.filter(savedNote => savedNote.id !== noteId);
     // Rewrite db.json
     fs.writeFileSync('./db/db.json', JSON.stringify(newData));
-    console.log(`The note under ID ${noteId} has been successfully deleted.`);
+    console.log(`\nThe note under ID ${noteId} has been successfully deleted.`);
     res.json(newData);
 })
 }
