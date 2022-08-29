@@ -1,5 +1,5 @@
 # note-taker-app
-Completed homework for the Module 11 challenge. The purpose was to create an application that relied on Express.js to handle data, specifically notes, between the front end and the back end. Any notes that are written on this application can be saved in a specific section by clicking on the save icon.
+Completed homework for the Module 11 challenge. The purpose was to create an application that relied on Express.js to handle data, specifically notes, between the front end and the back end. Any notes that are written on this application can be saved in a specific section by clicking on the save icon. Saved notes can also be deleted by clicking on the red trashcan icon next to each individual note.
 
 Application link: https://hidden-crag-43772.herokuapp.com/
 
