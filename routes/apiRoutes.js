@@ -33,18 +33,16 @@ app.post('/api/notes', (req, res) => {
     res.json(data);
 });
 // // API delete request
-// app.delete('/api/notes/:noteid', (req, res) => {
-//     let noteId = req.params.id.toString();
-//     console.info(`${req.method} request received for noteId: ${noteId}`);
+app.delete('/api/notes/:noteid', (req, res) => {
+    // Declare ID of specific note to be deleted
+    let noteId = req.params.id.toString();
+    // Read db.json data
+    let data = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+    // Remove the note with the specified ID
+    const newData = data.filter(note => note.id.toString() !== noteId);
+    // Rewrite db.json
+    fs.writeFileSync('./db/db.json', JSON.stringify(newData));
 
-//     let data = JSON.parse(fs.readFileSync('./db/db.json', JSON.stringify(data)));
-
-//     const newData = data.filter(note => note.id.toString() !== noteId);
-
-//     fs.writeFileSyne('./db/db.json', JSON.stringify(newData));
-
-//     console.log(`The note with id ${noteId} has been deleted successfully.`)
-
-//     res.json(newData);
-// })
+    res.json(newData);
+})
 }
