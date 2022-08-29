@@ -8,6 +8,7 @@ module.exports = app => {
 app.get('/api/notes', (req, res) => {
     // Read db.json file and return all saved notes
     let data = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+    console.log('Current notes: ', data);
     res.json(data);
 });
 
@@ -24,13 +25,15 @@ app.post('/api/notes', (req, res) => {
 
     // Retrieve current data from db.json
     let data = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+    console.log('Current notes: ', data);
 
     // Push new note to json file
     data.push(newNote);
 
     // Rewrite db.json with new note
     fs.writeFileSync('./db/db.json', JSON.stringify(data));
-    res.json(data);
+    console.log("Your new note has been successfully added.")
+    res.json(data)
 });
 // // API delete request
 // app.delete('/api/notes/:noteid', (req, res) => {

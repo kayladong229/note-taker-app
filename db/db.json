@@ -1,1 +1,8 @@
-[{"title":"Test Title","text":"Test text"},{"title":"Do laundry","text":"Make sure there's detergent","id":"0fa67a35-70bd-47d8-928e-b615175e60e8"}]
+[{
+    "title": "Test Title",
+    "text": "Test text"
+}, {
+    "title": "Do laundry",
+    "text": "Make sure there's detergent",
+    "id": "0fa67a35-70bd-47d8-928e-b615175e60e8"
+}]
