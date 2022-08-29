@@ -32,20 +32,21 @@ app.post('/api/notes', (req, res) => {
 
     // Rewrite db.json with new note
     fs.writeFileSync('./db/db.json', JSON.stringify(data));
-    console.log("Your new note has been successfully added.")
-    res.json(data)
+    console.log("Your new note has been successfully added.");
+    res.json(data);
 });
 // // API delete request
-// app.delete('/api/notes/:noteid', (req, res) => {
-//     // Declare ID of specific note to be deleted
-//     let noteId = req.params.id.toString();
-//     // Read db.json data
-//     let data = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
-//     // Remove the note with the specified ID
-//     const newData = data.filter(note => note.id.toString() !== noteId);
-//     // Rewrite db.json
-//     fs.writeFileSync('./db/db.json', JSON.stringify(newData));
-
-//     res.json(newData);
-// })
+app.delete('/api/notes/:id', (req, res) => {
+    // Declare ID of specific note to be deleted
+    let noteId = req.params.id;
+    // Read db.json data
+    let data = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+    console.log('Current notes: ', data);
+    // Remove the note with the specified ID
+    const newData = data.filter(note => note.id !== noteId);
+    // Rewrite db.json
+    fs.writeFileSync('./db/db.json', JSON.stringify(newData));
+    console.log("Your selected note has been successfully deleted.");
+    res.json(newData);
+})
 }
