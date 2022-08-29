@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-// Middlewares for routers
+// Middlewares for external routers
 require('./routes/apiRoutes') (app);
 require('./routes/htmlRoutes') (app);
 
