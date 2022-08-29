@@ -1,20 +1,19 @@
-// Declare constants
-const htmlRouter = require('express').Router();
+// Declare path constant
 const path = require('path');
 
+module.exports = app => {
 // GET Route for notes page
-htmlRouter.get('/notes', (req, res) =>
+app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '../public/notes.html'))
 );
 
 // GET Route for home page
-htmlRouter.get('/', (req, res) =>
+app.get('/', (req, res) =>
     res.sendFile(path.join(__dirname, '../public/index.html'))
 );
 
 // Redirect to home page if no matching route is found
-htmlRouter.get('*', (req, res) =>
+app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, '../public/index.html'))
 );
-
-module.exports = htmlRouter
+}
