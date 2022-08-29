@@ -33,16 +33,16 @@ app.post('/api/notes', (req, res) => {
     res.json(data);
 });
 // // API delete request
-app.delete('/api/notes/:noteid', (req, res) => {
-    // Declare ID of specific note to be deleted
-    let noteId = req.params.id.toString();
-    // Read db.json data
-    let data = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
-    // Remove the note with the specified ID
-    const newData = data.filter(note => note.id.toString() !== noteId);
-    // Rewrite db.json
-    fs.writeFileSync('./db/db.json', JSON.stringify(newData));
+// app.delete('/api/notes/:noteid', (req, res) => {
+//     // Declare ID of specific note to be deleted
+//     let noteId = req.params.id.toString();
+//     // Read db.json data
+//     let data = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+//     // Remove the note with the specified ID
+//     const newData = data.filter(note => note.id.toString() !== noteId);
+//     // Rewrite db.json
+//     fs.writeFileSync('./db/db.json', JSON.stringify(newData));
 
-    res.json(newData);
-})
+//     res.json(newData);
+// })
 }
