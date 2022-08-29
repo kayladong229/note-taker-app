@@ -1,39 +1,49 @@
 // Declare constants
-const api = require('express').Router();
+const apiRouter = require('express').Router();
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
 // API GET request
-api.get('/api/notes', (req, res) => {
-    console.info(`${req.method} request received for notes`);
+apiRouter.get('/api/notes', (req, res) => {
     // Read db.json
-    let data = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
-    console.info("Returning note data: " + JSON.stringify(data));
+    let data = JSON.parse(fs.readFileSync('/db/db.json', 'utf8'));
     // Return note data
     res.json(data);
 });
 // API POST request
-api.post('api/notes', (req, res) => {
-    console.info(`${req.method} request received for notes`);
-    // Declare constant for text of new note
-    const newNote = req.body;
-    console.info("New node added: " + JSON.stringify(newNote));
+apiRouter.post('/api/notes', (req, res) => {
+    // Read current data from db.json
+    let data = JSON.parse(fs.readFileSync('/db/db.json', 'utf8'));
+    res.json(data);
 
-    // Assign unique ID for every new note
-    newNote.id = uuidv4();
+    // Declare constant for new note
+    const newNote = {
+        title: req.body.title,
+        text: req.body.text,
+        // Create a unique ID for the note
+        id: uuidv4()
+    }
 
-    // Read db.json and push new note to db.json
-    let data = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+    // Push new note to json file
     data.push(newNote);
-
-    // Rewrite db.json
-    fs.writeFileSync('./db/db.json', JSON.stringify(data));
-
-    console.info("Notes have been successfully updated.")
-
+    // Rewrite db.json with new note
+    fs.writeFileSync('/db/db.json', JSON.stringify(data));
     res.json(data);
 });
-// // API delete 
-// api.delete('/api/notes/:noteid', (req, res) =>)
+// // API delete request
+apiRouter.delete('/api/notes/:noteid', (req, res) => {
+    let noteId = req.params.id.toString();
+    console.info(`${req.method} request received for noteId: ${noteId}`);
 
-module.exports = api
+    let data = JSON.parse(fs.readFileSync('/db/db.json', JSON.stringify(data)));
+
+    const newData = data.filter(note => note.id.toString() !== noteId);
+
+    fs.writeFileSyne('/db/db.json', JSON.stringify(newData));
+
+    console.log(`The note with id ${noteId} has been deleted successfully.`)
+
+    res.json(newData);
+})
+
+module.exports = apiRouter

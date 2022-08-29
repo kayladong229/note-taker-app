@@ -10,9 +10,10 @@ const PORT = process.env.PORT || 3001;
 // Middlewares for POST requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use(express.static('public'));
+// Middlewares for routers
 app.use('/api', apiRouter);
 app.use('/', htmlRouter);
+
+app.use(express.static('public'));
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
