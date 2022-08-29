@@ -32,7 +32,7 @@ app.post('/api/notes', (req, res) => {
 
     // Rewrite db.json with new note
     fs.writeFileSync('./db/db.json', JSON.stringify(data));
-    console.log("Your new note has been successfully added.");
+    console.log(`Your new note has been successfully added under the ID ${newNote.id}.`);
     res.json(data);
 });
 // // API delete request
@@ -46,7 +46,7 @@ app.delete('/api/notes/:id', (req, res) => {
     const newData = data.filter(savedNote => savedNote.id !== noteId);
     // Rewrite db.json
     fs.writeFileSync('./db/db.json', JSON.stringify(newData));
-    console.log("Your selected note has been successfully deleted.");
+    console.log(`The note under ID ${noteId} has been successfully deleted.`);
     res.json(newData);
 })
 }
