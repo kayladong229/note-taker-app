@@ -14,7 +14,6 @@ app.get('/api/notes', (req, res) => {
 
 // API POST request
 app.post('/api/notes', (req, res) => {
-
     // Declare variable for new note
     let newNote = {
         title: req.body.title,
@@ -22,18 +21,16 @@ app.post('/api/notes', (req, res) => {
         // Create a unique ID for the note
         id: uuidv4()
     }
-
     // Retrieve current data from db.json
     let data = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
-
     // Push new note to json file
     data.push(newNote);
-
     // Rewrite db.json with new note
     fs.writeFileSync('./db/db.json', JSON.stringify(data));
     console.log(`\nYour new note has been successfully added under the ID ${newNote.id}.`);
     res.json(data);
 });
+
 // // API delete request
 app.delete('/api/notes/:id', (req, res) => {
     // Declare ID of specific note to be deleted
